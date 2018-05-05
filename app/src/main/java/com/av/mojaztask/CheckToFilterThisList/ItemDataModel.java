@@ -12,7 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Maiada on 5/5/2018.
+ * Created by Aya on 5/5/2018.
  */
 
 public class ItemDataModel {
