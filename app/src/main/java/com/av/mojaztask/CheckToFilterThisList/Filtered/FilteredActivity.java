@@ -13,6 +13,10 @@ import com.av.mojaztask.databinding.ActivityFilteredBinding;
 
 import java.util.ArrayList;
 
+/*
+  Display filter list of items that user has been selected it.
+ */
+
 public class FilteredActivity extends AppCompatActivity {
 
     private ActivityFilteredBinding activityFilteredBinding;

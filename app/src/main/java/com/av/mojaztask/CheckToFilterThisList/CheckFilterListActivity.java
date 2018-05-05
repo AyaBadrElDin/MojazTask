@@ -17,6 +17,10 @@ import java.util.ArrayList;
 
 import static com.av.mojaztask.CheckToFilterThisList.ItemListAdapter.itemFilterList;
 
+/*
+  Display list of item  that  user can explore and selected
+  from 1 to 10 .
+ */
 public class CheckFilterListActivity extends AppCompatActivity {
 
     private ActivityCheckFilterListBinding checkFilterListBinding;
