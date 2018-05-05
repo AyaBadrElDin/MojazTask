@@ -42,6 +42,7 @@ public class FilteredActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL);
         activityFilteredBinding.recyclerViewFiltered.addItemDecoration(dividerItemDecoration);
 
+
         Update_UI();
     }
 
