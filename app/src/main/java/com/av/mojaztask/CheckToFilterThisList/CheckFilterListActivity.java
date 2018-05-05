@@ -1,5 +1,6 @@
 package com.av.mojaztask.CheckToFilterThisList;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
+import com.av.mojaztask.CheckToFilterThisList.Filtered.FilteredActivity;
 import com.av.mojaztask.R;
 import com.av.mojaztask.databinding.ActivityCheckFilterListBinding;
 
@@ -21,7 +23,6 @@ public class CheckFilterListActivity extends AppCompatActivity {
 
     ArrayList<ItemData> getItemDataList;
     private ItemListAdapter itemListAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class CheckFilterListActivity extends AppCompatActivity {
     }
 
     private void Update_UI() {
-        itemListAdapter = new ItemListAdapter(this,getItemDataList);
+        itemListAdapter = new ItemListAdapter(this,getItemDataList,false);
         checkFilterListBinding.recyclerView.setAdapter(itemListAdapter);
         itemListAdapter.notifyDataSetChanged();
     }
@@ -79,7 +80,13 @@ public class CheckFilterListActivity extends AppCompatActivity {
          if(itemFilterList.size()==0)return;
 
          if(itemFilterList.size()<=10){
-             Toast.makeText(this, ""+itemFilterList.size(), Toast.LENGTH_SHORT).show();
+
+           //  Toast.makeText(this, ""+itemFilterList.size(), Toast.LENGTH_SHORT).show();
+              Intent  filteredIntent = new Intent(this, FilteredActivity.class);
+              filteredIntent.putExtra("FilteredList",itemFilterList);
+              startActivity(filteredIntent);
+
+
          }
 
     }

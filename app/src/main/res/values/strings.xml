@@ -9,4 +9,8 @@
     <string name="error_network"> No network connection</string>
     <string name="error_loading">Error loading data</string>
 
+                   <!-- Filter List Screen -->
+    <string name="filtered">Filtered</string>
+
+
 </resources>

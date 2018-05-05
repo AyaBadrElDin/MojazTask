@@ -2,11 +2,13 @@ package com.av.mojaztask.CheckToFilterThisList;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Aya on 5/5/2018.
  */
 
-public class ItemData {
+public class ItemData implements Serializable{
 
     @SerializedName("albumId")
     private long albumID;

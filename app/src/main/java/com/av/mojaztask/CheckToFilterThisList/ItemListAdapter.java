@@ -22,11 +22,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     Activity activity;
     ArrayList<ItemData> itemDataArrayList;
     public static ArrayList<ItemData> itemFilterList = new ArrayList<>();
+    boolean isFiltered;
 
 
-    public ItemListAdapter(Activity activity ,ArrayList<ItemData>itemDataArrayList) {
-        this.activity = activity;
-        this.itemDataArrayList = itemDataArrayList;
+    public ItemListAdapter(Activity activity ,ArrayList<ItemData>itemDataArrayList,boolean isFiltered) {
+        this.activity           =  activity;
+        this.itemDataArrayList  = itemDataArrayList;
+        this.isFiltered         = isFiltered;
 
     }
 
@@ -41,6 +43,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
         final ItemData itemData = itemDataArrayList.get(position);
 
+        if(isFiltered)
+         holder.itemCheck.setVisibility(View.INVISIBLE);
+        else
+        holder.itemCheck.setVisibility(View.VISIBLE);
+
         Glide.with(activity)
              .applyDefaultRequestOptions(new RequestOptions()
                      .placeholder(R.mipmap.ic_launcher)
@@ -49,7 +56,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
              .into(holder.itemPhoto);
 
         holder.itemTitle.setText(itemData.getTitle());
+
         holder.itemAlbumId.setText(String.valueOf(itemData.getAlbumID()));
+
         holder.itemCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

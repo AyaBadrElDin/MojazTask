@@ -51,6 +51,8 @@
         android:layout_marginBottom="8dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="20dp"
+        android:buttonTint="@color/colorAccent"
+        android:checked="false"
         />
 </RelativeLayout>
