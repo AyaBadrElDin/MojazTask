@@ -20,7 +20,6 @@ import static com.av.mojaztask.CheckToFilterThisList.ItemListAdapter.itemFilterL
 public class CheckFilterListActivity extends AppCompatActivity {
 
     private ActivityCheckFilterListBinding checkFilterListBinding;
-
     ArrayList<ItemData> getItemDataList;
     private ItemListAdapter itemListAdapter;
 
@@ -60,12 +59,16 @@ public class CheckFilterListActivity extends AppCompatActivity {
           @Override
           public void onFailure() {
               hideProgressbar();
+              checkFilterListBinding.tvError.setVisibility(View.VISIBLE);
+              checkFilterListBinding.tvError.setText(getResources().getString(R.string.error_loading));
 
           }
 
           @Override
           public void onNetworkFailure() {
-
+               hideProgressbar();
+              checkFilterListBinding.tvError.setVisibility(View.VISIBLE);
+              checkFilterListBinding.tvError.setText(getResources().getString(R.string.error_network));
           }
       });
     }
@@ -96,6 +99,5 @@ public class CheckFilterListActivity extends AppCompatActivity {
     }
     private void hideProgressbar(){checkFilterListBinding.pbLoading.setVisibility(View.INVISIBLE);
     }
-
 
 }

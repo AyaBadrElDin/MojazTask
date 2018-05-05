@@ -5,17 +5,20 @@ import com.av.mojaztask.NetworkUtilities.ApiInterface;
 
 import org.json.JSONArray;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.HttpException;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by Aya on 5/5/2018.
  */
 
-public class ItemDataModel {
+public class ItemDataModel  {
 
     public static ApiInterface apiInterface= ApiClient.getClient().create(ApiInterface.class);
 
@@ -31,8 +34,13 @@ public class ItemDataModel {
 
             @Override
             public void onFailure(Call<ArrayList<ItemData>> call, Throwable t) {
-                   callback.onFailure();
+                if(t instanceof UnknownHostException){
+                    callback.onNetworkFailure();
+                }else{
+                    callback.onFailure();
+                }
             }
+
         });
 
     }
