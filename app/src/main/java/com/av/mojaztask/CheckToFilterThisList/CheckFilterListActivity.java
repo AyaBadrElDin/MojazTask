@@ -1,7 +1,9 @@
-package com.av.mojaztask;
+package com.av.mojaztask.CheckToFilterThisList;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.av.mojaztask.R;
 
 public class CheckFilterListActivity extends AppCompatActivity {
 
