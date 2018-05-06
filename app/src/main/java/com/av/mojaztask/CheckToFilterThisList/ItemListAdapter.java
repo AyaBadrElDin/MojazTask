@@ -1,7 +1,14 @@
 package com.av.mojaztask.CheckToFilterThisList;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +16,17 @@ import android.view.ViewGroup;
 
 import com.av.mojaztask.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -44,17 +59,27 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
         final ItemData itemData = itemDataArrayList.get(position);
 
+
         if(isFiltered)
          holder.itemCheck.setVisibility(View.INVISIBLE);
         else
         holder.itemCheck.setVisibility(View.VISIBLE);
 
+
         Glide.with(activity)
-             .applyDefaultRequestOptions(new RequestOptions()
-                     .placeholder(R.mipmap.ic_launcher)
-                     .transform(new RoundedCorners(30)))
-             .load(itemData.getThumbnailURL())
+               .applyDefaultRequestOptions(new RequestOptions()
+               .placeholder(R.mipmap.ic_launcher)
+               .transform(new RoundedCorners(30))
+             )
+             .load(itemData.getThumbnailURL() )
              .into(holder.itemPhoto);
+
+
+        boolean isChecked = itemData.isChecked();
+        if(isChecked)
+        holder.itemCheck.setChecked(true);
+        else
+        holder.itemCheck.setChecked(false);
 
         holder.itemTitle.setText(itemData.getTitle());
 
@@ -65,10 +90,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
             public void onClick(View v) {
                 boolean isChecked = holder.itemCheck.isChecked();
 
-                if(isChecked)
+                if(isChecked){
                     itemFilterList.add(itemData);
-                else
+                    itemData.setChecked(true);
+                }else{
                     itemFilterList.remove(itemData);
+                    itemData.setChecked(false);
+
+                }
+
 
             }
         });
@@ -76,10 +106,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
+
 
     @Override
     public int getItemCount() {

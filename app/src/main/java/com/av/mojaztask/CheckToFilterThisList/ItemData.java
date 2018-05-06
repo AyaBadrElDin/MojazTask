@@ -25,6 +25,8 @@ public class ItemData implements Serializable{
     @SerializedName("thumbnailUrl")
     private String thumbnailURL;
 
+    private  boolean isChecked;
+
     public long getAlbumID() {
         return albumID;
     }
@@ -65,4 +67,11 @@ public class ItemData implements Serializable{
         this.thumbnailURL = thumbnailURL;
     }
 
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
 }
